@@ -3,7 +3,7 @@ import {
     SafeAreaView,
     ScrollView,
     StatusBar,
-    StyleSheet, TouchableOpacity, Image,
+    StyleSheet, TouchableOpacity, Image,Alert,
     Text,
     useColorScheme, TextInput,
     View, Button, FlatList, Dimensions
@@ -21,61 +21,79 @@ export default function DashBoard({ navigation }) {
     function switching(index) {
         setInd(index)
     }
+    function SignOut(){
+        Alert.alert(
+            "SIGN OUT",
+            "Confirm Signout?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                {
+                    text: "OK", onPress: () => navigation.navigate('Login')
+                }
+            ]
+        );
+    }
     return (
-        <View style={{ flex: 1, backgroundColor: '#f1f1f1' }}>
-            <Header onDrawer={() => navigation.openDrawer()} onNavi={() => navigation.navigate('Login')} />
-            <ScrollView style={{ backgroundColor: '#f1f1f1' }}>
-                <View elevation={5} style={[styles.main, { height: 1000, marginTop: 0 }]}>
-                    <TopChat />
-                    <View style={{ marginTop: 10 }}>
-                        <FlatList
-                            showsVerticalScrollIndicator={false}
-                            data={MenuData}
-                            renderItem={({ item, index }) => (
-                                <View>
-                                    <View style={styles.main1}>
-                                        <View style={{ flexDirection: 'row', marginTop: 4 }}>
-                                            <Text style={styles.txt2}>{item.title}</Text>
-                                            <AntDesign style={styles.icon} name={index == ind ? 'down' : 'up'} size={20}
-                                                onPress={() => {
-                                                    switching(index)
-                                                }} />
-                                        </View>
+        <View style={{ height: '100%', backgroundColor: '#ebe6e6' }}>
+            <Header onDrawer={() => navigation.openDrawer()} onNavi={() => SignOut()} />
+            <View style={styles.main}>
+                <View elevation={5} style={styles.main4}>
+                    <FlatList
+                        showsVerticalScrollIndicator={false}
+                        data={MenuData}
+                        renderItem={({ item, index }) => (
+                            <View>
+                                <View style={styles.main1}>
+                                    <View style={{ flexDirection: 'row', marginTop: 4 }}>
+                                        <Text style={styles.txt2}>{item.title}</Text>
+                                        <AntDesign style={styles.icon} name={index == ind ? 'down' : 'up'} size={20}
+                                            onPress={() => {
+                                                switching(index)
+                                            }} />
                                     </View>
-                                    {index == ind && <FlatList
-                                        data={item.DropMenu}
-                                        renderItem={({ item, index }) => (
-                                            <View style={styles.main3}>
-                                                <Text style={{ marginTop: 5, fontSize: 18, marginBottom: 7 }}>{item.name}</Text>
-                                                <View style={styles.view}>
-                                                    <AntDesign name='mail' size={25} color='grey' />
-                                                    <Text style={styles.txt1}>{item.mail}</Text>
-                                                </View>
-                                                <View style={styles.view}>
-                                                    <Ionicons name='call-outline' size={25} color='grey' />
-                                                    <Text style={styles.txt1}>{item.call}</Text>
-                                                </View>
-                                            </View>
-                                        )}
-                                        keyExtractor={item => item.name}
-                                    />}
                                 </View>
-                            )}
-                            keyExtractor={item => item.title}
-                        /></View>
-                </View>
-            </ScrollView>
+                                {index === ind && <FlatList
+                                    data={item.DropMenu}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.main3}>
+                                            <Text style={{ marginTop: 5, fontSize: 18, marginBottom: 7 }}>{item.name}</Text>
+                                            <View style={styles.view}>
+                                                <AntDesign name='mail' size={25} color='grey' />
+                                                <Text style={styles.txt1}>{item.mail}</Text>
+                                            </View>
+                                            <View style={styles.view}>
+                                                <Ionicons name='call-outline' size={25} color='grey' />
+                                                <Text style={styles.txt1}>{item.call}</Text>
+                                            </View>
+                                        </View>
+                                    )}
+                                    keyExtractor={item => item.name}
+                                />}
+                            </View>
+                        )}
+                        keyExtractor={item => item.title}
+                        ListHeaderComponent={<TopChat />}
+                    /></View>
+            </View>
         </View>
     );
 }
 const styles = StyleSheet.create({
     main: {
-        marginTop: 10, width: 350, borderRadius: 20, backgroundColor: '#fff', marginHorizontal: 20
+        marginTop: 5, height: 670, width: '100%', borderRadius: 100, backgroundColor: '#ebe6e6',
     },
     main1:
-        { flexDirection: 'row', height: 40, borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10, },
+        { flexDirection: 'row', height: 40, borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10 },
     main3:
         { borderBottomWidth: 1, borderBottomColor: 'grey', marginHorizontal: 20 },
+        main4:{
+            marginTop: 10, height: 670, width: 350, borderRadius: 0, backgroundColor: '#fff', marginHorizontal: 20
+
+        },
     txt1:
         { color: 'grey', marginLeft: 7, fontSize: 18 },
     view:
