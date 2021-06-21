@@ -5,7 +5,6 @@ import {
     StatusBar,
     StyleSheet, TouchableOpacity, Image, Alert,
     Text,
-    useColorScheme, TextInput,
     View, Button, FlatList, Dimensions, PermissionsAndroid
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -15,7 +14,34 @@ import TopChat from './TopChat';
 import { MenuData } from './MenuData';
 import {styles} from './styles';
 export default function DashBoard({ navigation }) {
-
+    React.useEffect(()=>{
+        checking_location()
+    })
+    async function checking_location(){
+        try {
+            const granted = await PermissionsAndroid.request(
+              PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+              {
+                'title': 'ReactNativeCode Location Permission',
+                'message': 'ReactNativeCode App needs access to your location '
+              }
+            )
+            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        
+               Alert.alert("location active");
+               setGps(true)
+            }
+            else {
+        
+              Alert.alert("location de active");
+              setGps(false)
+        
+            }
+          } catch (err) {
+            console.warn(err)
+            setGps(false)
+          }
+    }
     const [ind, setInd] = useState(0)
     const [gps, setGps] = useState(false)
     const arrow = '>'
