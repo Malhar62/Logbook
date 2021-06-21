@@ -13,11 +13,9 @@ import {
 import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import Login from './Screens/Login';
-import Forgot from './Screens/Forgot';
-import Home from './Screens/Home';
+import Login from './Screens/Login/Login';
+import Forgot from './Screens/Forgot/Forgot';
+import Home from './Screens/Home/Home';
 const Stack = createStackNavigator();
 
 export default function App() {

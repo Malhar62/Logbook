@@ -6,16 +6,18 @@ import {
     StyleSheet, TouchableOpacity, Image, Alert,
     Text,
     useColorScheme, TextInput,
-    View, Button, FlatList, Dimensions
+    View, Button, FlatList, Dimensions, PermissionsAndroid
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Header from './Header';
 import TopChat from './TopChat';
 import { MenuData } from './MenuData';
+import {styles} from './styles';
 export default function DashBoard({ navigation }) {
-    const [ind, setInd] = useState(0)
 
+    const [ind, setInd] = useState(0)
+    const [gps, setGps] = useState(false)
     const arrow = '>'
     function switching(index) {
         setInd(index)
@@ -46,11 +48,11 @@ export default function DashBoard({ navigation }) {
                         data={MenuData}
                         renderItem={({ item, index }) => (
                             <View style={[styles.first, {
-                                 borderTopRightRadius: index == 0 ? 10 : 0,
-                                  borderTopLeftRadius: index == 0 ? 10 : 0, 
-                                  borderBottomRightRadius: index == 3 ? 10 : 0,
-                                   borderBottomLeftRadius: index == 3 ? 10 : 0 
-                                   }]}>
+                                borderTopRightRadius: index == 0 ? 10 : 0,
+                                borderTopLeftRadius: index == 0 ? 10 : 0,
+                                borderBottomRightRadius: index == 3 ? 10 : 0,
+                                borderBottomLeftRadius: index == 3 ? 10 : 0
+                            }]}>
                                 <View style={[styles.main1], { borderBottomWidth: ind == index ? 1 : 0, }}>
                                     <View style={{ flexDirection: 'row', marginTop: 4 }}>
                                         <Text style={styles.txt2}>{item.title}</Text>
@@ -80,33 +82,9 @@ export default function DashBoard({ navigation }) {
                             </View>
                         )}
                         keyExtractor={item => item.title}
-                        ListHeaderComponent={<TopChat />}
+                        ListHeaderComponent={<TopChat gps={gps} />}
                     /></View>
             </View>
         </View>
     );
 }
-const styles = StyleSheet.create({
-    first: {
-        width: 350, alignSelf: 'center', backgroundColor: '#fff', borderWidth: 1, borderColor: 'rgba(158, 150, 150, .5)'
-    },
-    main: {
-        height: 670, width: '100%', borderRadius: 10, backgroundColor: '#ebe6e6',
-    },
-    main1:
-        { flexDirection: 'row', height: 40, width: 350, alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10 },
-    main3:
-        { borderBottomColor: 'grey', width: 320, alignSelf: 'center' },
-    main4: {
-        height: 670, width: '100%', borderRadius: 0, backgroundColor: '#f1f1f1',
-    },
-    txt1:
-        { color: 'grey', marginLeft: 7, fontSize: 18 },
-    view:
-        { flexDirection: 'row', marginBottom: 7 },
-    icon:
-        { position: 'absolute', marginLeft: 310, marginTop: 5 },
-    txt2: { fontSize: 22, marginLeft: 10, fontWeight: 'bold' },
-
-
-})

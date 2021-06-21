@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, View, Dimensions ,Alert} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContent from '../DrawerScreens/DrawerContent';
-import DashBoard from '../DrawerScreens/DashBoard/index';
+import DashBoard from '../DrawerScreens/DashBoard/DashBoard';
 import Shift from '../DrawerScreens/Shift';
 import Licence from '../DrawerScreens/Licence';
 import Timelog from '../DrawerScreens/Timelog';
@@ -34,9 +34,6 @@ export default function Home({ navigation }) {
         <Drawer.Navigator drawerStyle={{
             width: 340,
         }}
-            drawerContentOptions={{
-                activeTintColor: 'red',
-            }}
             drawerContent={() => <DrawerContent onNavi={(path) => onNavi(path)} />} >
             <Drawer.Screen name="DashBoard" component={DashBoard} />
             <Drawer.Screen name="Shift" component={Shift} />

@@ -12,13 +12,14 @@ import Common from '../Common'
 import Feather from 'react-native-vector-icons/Feather';
 import CheckBox from '@react-native-community/checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { LoginBottomHeight,setMargin,buttonSize } from '../Functions';
+import {styles} from './styles';
 export default function Login({ navigation }) {
-  
+
   React.useEffect(() => {
     Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
     Keyboard.addListener("keyboardDidHide", _keyboardDidHide);
-    
+
     return () => {
       Keyboard.removeListener("keyboardDidShow", _keyboardDidShow);
       Keyboard.removeListener("keyboardDidHide", _keyboardDidHide);
@@ -48,6 +49,7 @@ export default function Login({ navigation }) {
   }
   const WIDTH = Dimensions.get('window').width;
   const HEIGHT = Dimensions.get('window').height;
+  console.log('height : ' + HEIGHT)
   const [name, setName] = useState('');
   const [pass, setPass] = useState('');
   const [flag, setFlag] = useState(true);
@@ -93,7 +95,7 @@ export default function Login({ navigation }) {
           onChangeText={text => setName(text)}
           style={styles.txtinp}
         />
-        <View style={{ width: 320, height: 70, borderBottomColor: 'black', borderBottomWidth: 1, alignSelf: 'center', flexDirection: 'row', alignSelf: 'center', }}>
+        <View style={{ width: 320, height: 70, borderBottomColor: 'grey', borderBottomWidth: 1, alignSelf: 'center', flexDirection: 'row', alignSelf: 'center', }}>
           <TextInput
             placeholder='Password'
             secureTextEntry={flag}
@@ -101,7 +103,7 @@ export default function Login({ navigation }) {
             onChangeText={text => setPass(text)}
             style={styles.txtinp1}
           />
-          <Feather name={flag ? 'eye-off' : 'eye'} color={flag ? 'black' : 'grey'} size={25} onPress={() => setFlag(!flag)} style={{ marginTop: 30 }} />
+          <Feather name={flag ? 'eye-off' : 'eye'} color={flag ? 'black' : 'grey'} size={25} onPress={() => setFlag(!flag)} style={{  marginTop: setMargin() }} />
         </View>
         <View style={styles.view1}>
           <View style={{ flexDirection: 'row' }}>
@@ -132,27 +134,5 @@ export default function Login({ navigation }) {
   );
 };
 
-const styles = StyleSheet.create({
-  txtinp: {
-    width: 320, height: 50, fontSize: 18, borderBottomColor: 'grey', borderBottomWidth: 1, alignSelf: 'center', marginTop: 30
-  }, txtinp1: {
-    width: 300, height: 50, fontSize: 18, borderBottomColor: 'grey', alignSelf: 'center', marginTop: 30
-  },
-  view1: {
-    flexDirection: 'row', marginTop: 30, justifyContent: 'space-between', marginHorizontal: 40
-  },
-  button: {
-    width: 320, height: 40, marginTop: 30, alignSelf: 'center', borderRadius: 10, backgroundColor: '#524ae8'
-  },
-  main: {
-    width: Dimensions.get('window').width, height: Dimensions.get('window').height - 320, backgroundColor: 'white'
-  },
-  txt: {
-    fontSize: 25, alignSelf: 'center', marginTop: 40
-  },
-  txt1: { fontSize: 15, color: 'blue', marginTop: 5 },
-  txt2: {
-    color: '#fff', alignSelf: 'center', fontSize: 20, marginTop: 5
-  }
-})
+
 
