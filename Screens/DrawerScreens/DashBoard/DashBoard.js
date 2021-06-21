@@ -12,35 +12,35 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Header from './Header';
 import TopChat from './TopChat';
 import { MenuData } from './MenuData';
-import {styles} from './styles';
+import { styles } from './styles';
 export default function DashBoard({ navigation }) {
-    React.useEffect(()=>{
+    React.useEffect(() => {
         checking_location()
     })
-    async function checking_location(){
+    async function checking_location() {
         try {
             const granted = await PermissionsAndroid.request(
-              PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-              {
-                'title': 'ReactNativeCode Location Permission',
-                'message': 'ReactNativeCode App needs access to your location '
-              }
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                {
+                    'title': 'ReactNativeCode Location Permission',
+                    'message': 'ReactNativeCode App needs access to your location '
+                }
             )
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        
-               Alert.alert("location active");
-               setGps(true)
+
+                console.log("location active");
+                setGps(true)
             }
             else {
-        
-              Alert.alert("location de active");
-              setGps(false)
-        
+
+                console.log("location de active");
+                setGps(false)
+
             }
-          } catch (err) {
+        } catch (err) {
             console.warn(err)
             setGps(false)
-          }
+        }
     }
     const [ind, setInd] = useState(0)
     const [gps, setGps] = useState(false)
@@ -79,8 +79,8 @@ export default function DashBoard({ navigation }) {
                                 borderBottomRightRadius: index == 3 ? 10 : 0,
                                 borderBottomLeftRadius: index == 3 ? 10 : 0
                             }]}>
-                                <View style={[styles.main1], { borderBottomWidth: ind == index ? 1 : 0, }}>
-                                    <View style={{ flexDirection: 'row', marginTop: 4 }}>
+                                <View style={[styles.main1], { borderBottomWidth: ind == index ? 1 : 0, borderBottomColor: 'grey' }}>
+                                    <View style={{ flexDirection: 'row', marginTop: 4,marginBottom:4 }}>
                                         <Text style={styles.txt2}>{item.title}</Text>
                                         <AntDesign style={styles.icon} name={index == ind ? 'down' : 'up'} size={20}
                                             onPress={() => {

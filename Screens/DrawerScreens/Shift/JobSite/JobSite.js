@@ -8,12 +8,14 @@ import {
     useColorScheme, TextInput,
     View, Button
 } from 'react-native';
-import HeaderCommon from './HeaderCommon';
-
-export default function Shift({navigation}) {
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import HeaderCommon from '../../HeaderCommon';
+export default function JobSite({ navigation }) {
     return (
         <View>
-            <HeaderCommon onNavi={() => navigation.goBack()} name='Shift' />
+            <HeaderCommon onNavi={() => navigation.goBack()} name='Job Site' />
+
+            
         </View>
     );
 }

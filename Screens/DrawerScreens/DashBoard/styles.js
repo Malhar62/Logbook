@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet, TouchableOpacity, Image, Alert,
-    Text,
-    useColorScheme, TextInput,
-    View, Button, FlatList, Dimensions, PermissionsAndroid
+    StyleSheet
 } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -17,7 +11,7 @@ export const styles = StyleSheet.create({
         height: 670, width: '100%', borderRadius: 10, backgroundColor: '#ebe6e6',
     },
     main1:
-        { flexDirection: 'row', height: 40, width: 350, alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10 },
+        { flexDirection: 'row', height: 60, width: 350, alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10 },
     main3:
         { borderBottomColor: 'grey', width: 320, alignSelf: 'center' },
     main4: {
