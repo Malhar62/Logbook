@@ -3,7 +3,7 @@ import {
     SafeAreaView,
     ScrollView,
     StatusBar,
-    StyleSheet, TouchableOpacity, Image,Alert,
+    StyleSheet, TouchableOpacity, Image, Alert,
     Text,
     useColorScheme, TextInput,
     View, Button, FlatList, Dimensions
@@ -11,7 +11,6 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Header from './Header';
-import DropDownItem from 'react-native-drop-down-item';
 import TopChat from './TopChat';
 import { MenuData } from './MenuData';
 export default function DashBoard({ navigation }) {
@@ -21,7 +20,7 @@ export default function DashBoard({ navigation }) {
     function switching(index) {
         setInd(index)
     }
-    function SignOut(){
+    function SignOut() {
         Alert.alert(
             "SIGN OUT",
             "Confirm Signout?",
@@ -38,16 +37,21 @@ export default function DashBoard({ navigation }) {
         );
     }
     return (
-        <View style={{ height: '100%', backgroundColor: '#ebe6e6' }}>
+        <View style={{ flex: 1, backgroundColor: '#ebe6e6' }}>
             <Header onDrawer={() => navigation.openDrawer()} onNavi={() => SignOut()} />
             <View style={styles.main}>
-                <View elevation={5} style={styles.main4}>
+                <View style={styles.main4}>
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={MenuData}
                         renderItem={({ item, index }) => (
-                            <View>
-                                <View style={styles.main1}>
+                            <View style={[styles.first, {
+                                 borderTopRightRadius: index == 0 ? 10 : 0,
+                                  borderTopLeftRadius: index == 0 ? 10 : 0, 
+                                  borderBottomRightRadius: index == 3 ? 10 : 0,
+                                   borderBottomLeftRadius: index == 3 ? 10 : 0 
+                                   }]}>
+                                <View style={[styles.main1], { borderBottomWidth: ind == index ? 1 : 0, }}>
                                     <View style={{ flexDirection: 'row', marginTop: 4 }}>
                                         <Text style={styles.txt2}>{item.title}</Text>
                                         <AntDesign style={styles.icon} name={index == ind ? 'down' : 'up'} size={20}
@@ -59,7 +63,7 @@ export default function DashBoard({ navigation }) {
                                 {index === ind && <FlatList
                                     data={item.DropMenu}
                                     renderItem={({ item, index }) => (
-                                        <View style={styles.main3}>
+                                        <View style={[styles.main3, { borderBottomWidth: index != 4 ? 1 : 0 }]}>
                                             <Text style={{ marginTop: 5, fontSize: 18, marginBottom: 7 }}>{item.name}</Text>
                                             <View style={styles.view}>
                                                 <AntDesign name='mail' size={25} color='grey' />
@@ -83,17 +87,19 @@ export default function DashBoard({ navigation }) {
     );
 }
 const styles = StyleSheet.create({
+    first: {
+        width: 350, alignSelf: 'center', backgroundColor: '#fff', borderWidth: 1, borderColor: 'rgba(158, 150, 150, .5)'
+    },
     main: {
-        marginTop: 5, height: 670, width: '100%', borderRadius: 100, backgroundColor: '#ebe6e6',
+        height: 670, width: '100%', borderRadius: 10, backgroundColor: '#ebe6e6',
     },
     main1:
-        { flexDirection: 'row', height: 40, borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10 },
+        { flexDirection: 'row', height: 40, width: 350, alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10 },
     main3:
-        { borderBottomWidth: 1, borderBottomColor: 'grey', marginHorizontal: 20 },
-        main4:{
-            marginTop: 10, height: 670, width: 350, borderRadius: 0, backgroundColor: '#fff', marginHorizontal: 20
-
-        },
+        { borderBottomColor: 'grey', width: 320, alignSelf: 'center' },
+    main4: {
+        height: 670, width: '100%', borderRadius: 0, backgroundColor: '#f1f1f1',
+    },
     txt1:
         { color: 'grey', marginLeft: 7, fontSize: 18 },
     view:

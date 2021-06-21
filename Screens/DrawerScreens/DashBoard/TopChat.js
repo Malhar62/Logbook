@@ -14,7 +14,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 export default function TopChat() {
 
     return (
-        <View style={{ backgroundColor: '#f1f1f1', marginBottom: 0 }}>
+        <View style={{ backgroundColor: '#f1f1f1', marginBottom: 10,marginTop:10 }}>
             <View elevation={5} style={styles.view}>
                 <View style={styles.view1}>
                     <MaterialCommunityIcons name='police-badge-outline' size={30} color='maroon' style={styles.icon} />
@@ -35,8 +35,6 @@ export default function TopChat() {
                 </View>
                 <Text style={styles.txt}>Please turn On your GPS,so we {"\n"} can track your location.</Text>
             </View>
-            <View style={styles.extra1}></View>
-            <View style={styles.extra2}></View>
 
         </View>
 
@@ -44,7 +42,7 @@ export default function TopChat() {
 }//
 const styles = StyleSheet.create({
     view:
-        { width: 350, height: 90, flexDirection: 'row', borderRadius: 10, backgroundColor: '#fff' },
+        { width: 350, height: 90, flexDirection: 'row', borderRadius: 10, backgroundColor: '#fff',alignSelf:'center' },
     view1: 
     { width: 60, height: 60, backgroundColor: '#faafb1', borderRadius: 30, marginTop: 10, marginLeft: 5 },
     txt: 
