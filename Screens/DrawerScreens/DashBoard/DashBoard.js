@@ -14,6 +14,8 @@ import TopChat from './TopChat';
 import { MenuData } from './MenuData';
 import { styles } from './styles';
 export default function DashBoard({ navigation }) {
+    console.log('wid'+Dimensions.get('window').width)
+
     React.useEffect(() => {
         checking_location()
     })

@@ -8,7 +8,7 @@ import {
     useColorScheme, TextInput,
     View, Button
 } from 'react-native';
-import HeaderCommon from './HeaderCommon';
+import HeaderCommon from '../HeaderCommon';
 
 export default function Timelog({navigation}) {
     return (

@@ -11,7 +11,7 @@ export const ShiftWidth = () => {
     return height;
 }
 export const setMargin1 = () => {
-    var answer = HEIGHT / 40;
+    var answer = HEIGHT / 50;
     return answer;
 }
 export const iconMargin = () => {
@@ -26,11 +26,23 @@ export const buttonSize = () => {
     var measure = HEIGHT / 18.9;
     return measure;
 }
+export const buttonWidth1 = () => {
+    var res = WIDTH / 2.7;
+    return res;
+}
 export const buttonmargin = () => {
     var answer = HEIGHT / 10;
     return answer;
 }
-export const buttonWidth=()=>{
-var res= WIDTH/1.22;
-return res;
+export const buttonWidth = () => {
+    var res = WIDTH / 1.22;
+    return res;
+}
+export const headerHeight = () => {
+    var res = HEIGHT / 12.5;
+    return res;
+}
+export const textheight = () => {
+    var res = WIDTH / 1.4;
+    return res;
 }

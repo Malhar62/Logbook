@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {URL,userData,DrawerData} from './Extradata';
+import { URL, userData, DrawerData } from './Extradata';
 export default function DrawerContent({ onNavi }) {
-  
+
     const [ind, setInd] = React.useState(0)
     return (
         <View style={{ width: 500, height: '100%' }}>
@@ -30,7 +30,7 @@ export default function DrawerContent({ onNavi }) {
                                 {index != 1 ?
                                     <MaterialCommunityIcons name={item.name} size={25} color='grey' /> :
                                     <AntDesign name={item.name} size={25} color='grey' />}
-                                <Text style={[styles.txt,{color:'grey'}]}>{item.text}</Text>
+                                <Text style={[styles.txt, { color: 'grey' }]}>{item.text}</Text>
                             </View>
                         )}
                         keyExtractor={item => item.name}
@@ -47,8 +47,8 @@ export default function DrawerContent({ onNavi }) {
                         <View style={{ marginTop: 10, height: 40, width: 340, backgroundColor: index == ind ? '#d3e6e4' : '#fff', borderLeftWidth: index == ind ? 5 : 1, borderLeftColor: index == ind && 'navy' }}>
                             <TouchableOpacity onPress={() => onNavi(item.path)}>
                                 <View style={styles.view1}>
-                                    <MaterialCommunityIcons name={item.name} size={25} color={index==ind?'blue':'black'}/>
-                                    <Text style={[styles.txt,{color:index==ind?'blue':'black'}]}>{item.text}</Text>
+                                    <MaterialCommunityIcons name={item.name} size={25} color={index == ind ? 'blue' : 'black'} />
+                                    <Text style={[styles.txt, { color: index == ind ? 'blue' : 'black' }]}>{item.text}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -62,14 +62,14 @@ export default function DrawerContent({ onNavi }) {
 const styles = StyleSheet.create({
     main: {
         width: 110, height: 110, borderRadius: 55, marginTop: 25, marginLeft: 10
-    }, 
-    img: 
+    },
+    img:
     {
-         width: 100, height: 100, borderRadius: 50, marginTop: 5, marginLeft: 5 
-        },
+        width: 100, height: 100, borderRadius: 50, marginTop: 5, marginLeft: 5
+    },
     view:
-     { height: 2, width: 280, borderWidth: 0.7, marginLeft: 20, marginTop: 30, borderColor: 'grey' },
-        view1:{ marginLeft: 20, flexDirection: 'row', marginTop: 5 },
-        txt:{ marginLeft: 10, fontSize: 18 },
+        { height: 2, width: 280, borderWidth: 0.7, marginLeft: 20, marginTop: 30, borderColor: 'grey' },
+    view1: { marginLeft: 20, flexDirection: 'row', marginTop: 5 },
+    txt: { marginLeft: 10, fontSize: 18 },
 
 })

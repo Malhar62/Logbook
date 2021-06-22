@@ -8,7 +8,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { buttonmargin, buttonSize, buttonWidth, ShiftHeight, ShiftWidth } from '../Functions1';
+import { buttonmargin, buttonSize, buttonWidth, ShiftHeight, ShiftWidth } from '../../Functions1';
 
 export const styles = StyleSheet.create({
     main: {
@@ -25,6 +25,11 @@ export const styles = StyleSheet.create({
     },
     txt2: {
         color: '#fff', alignSelf: 'center', fontSize: 15
-    }
-
+    },
+    addbutton:
+    { width: buttonWidth(), height:buttonSize(),justifyContent:'center' , marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center' },
+    addbutton1:
+    { flexDirection: 'row', alignSelf: 'center'},
+    addbuttontxt:
+    { color: 'grey', fontSize: 15, marginLeft: 4, marginTop: 1 }
 })

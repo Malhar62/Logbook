@@ -8,12 +8,12 @@ import {
     useColorScheme, TextInput,
     View, Button
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import HeaderCommon from './HeaderCommon';
-export default function Licence({ navigation }) {
+import HeaderCommon from '../HeaderCommon';
+
+export default function UpdateDetail({navigation}) {
     return (
         <View>
-            <HeaderCommon onNavi={() => navigation.goBack()} name='Licences' />
+            <HeaderCommon onNavi={() => navigation.goBack()} name='Update Licence Information' />
         </View>
     );
 }

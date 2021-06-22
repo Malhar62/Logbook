@@ -5,10 +5,11 @@ import {
     StatusBar,
     StyleSheet, TouchableOpacity,
     Text,
-    useColorScheme, TextInput,
+    useColorScheme, TextInput,Dimensions,
     View, Button
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { headerHeight } from './Functions1';
 export default function HeaderCommon({ navigation, onNavi, name }) {
     return (
         <View>
@@ -27,14 +28,16 @@ export default function HeaderCommon({ navigation, onNavi, name }) {
 }
 const styles = StyleSheet.create({
     main1: {
-        width: '100%', height: 60, backgroundColor: '#524ae8'
+        width: Dimensions.get('window').width, height: headerHeight(), backgroundColor: '#524ae8', justifyContent: 'center', alignSelf: 'center'
     },
     main2: {
-        flexDirection: 'row', marginTop: 15, position: 'absolute'
+        flexDirection: 'row', justifyContent: 'center'
     },
     main3: {
-        marginLeft: 5, width: 30, height: 60
+        marginLeft: 10, width: Dimensions.get('window').width-370, height: 60, justifyContent: 'center', position: 'absolute', left: 0
     },
-    main4: { alignSelf: 'center', width: 320, height: 60 },
-    txt: { fontSize: 20, color: '#fff', textAlign: 'center' }
+    main4:
+        { alignSelf: 'center', width: Dimensions.get('window').width-200, height: 60, justifyContent: 'center' },
+    txt:
+        { fontSize: 20, color: '#fff', textAlign: 'center' }
 })

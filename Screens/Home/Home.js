@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { Button, View, Dimensions ,Alert} from 'react-native';
-import { createDrawerNavigator,NavigationActions } from '@react-navigation/drawer';
+import { Button, View, Dimensions, Alert } from 'react-native';
+import { createDrawerNavigator, NavigationActions } from '@react-navigation/drawer';
 import DrawerContent from '../DrawerScreens/DrawerContent';
 import DashBoard from '../DrawerScreens/DashBoard/DashBoard';
 import Shift from '../DrawerScreens/Shift/Shift';
-import Licence from '../DrawerScreens/Licence';
-import Timelog from '../DrawerScreens/Timelog';
+import Licence from '../DrawerScreens/Licence/Licence';
+import Timelog from '../DrawerScreens/Timelog/Timelog';
 const Drawer = createDrawerNavigator();
 
 export default function Home({ navigation }) {
     function onNavi(path) {
         if (path !== 'Signout') {
-            if(path=='Shift'){
+            if (path == 'Shift') {
                 navigation.navigate('Shift', { screen: 'StartShift' });
-        }else{
-            navigation.navigate(path)
-        }
+            } else {
+                navigation.navigate(path)
+            }
         } else {
             Alert.alert(
                 "SIGN OUT",
