@@ -21,15 +21,15 @@ export const styles = StyleSheet.create({
         color: 'grey'
     },
     button: {
-        width: buttonWidth(), marginBottom: 10, height: buttonSize(), justifyContent: 'center', alignSelf: 'center', borderRadius: 10, backgroundColor: '#e6354c'
+        width: buttonWidth(), marginBottom: 10, height: 40, justifyContent: 'center', alignSelf: 'center', borderRadius: 10, backgroundColor: '#e6354c'
     },
     txt2: {
         color: '#fff', alignSelf: 'center', fontSize: 15
     },
     addbutton:
-    { width: buttonWidth(), height:buttonSize(),justifyContent:'center' , marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center' },
+        { width: buttonWidth(), height: 40, justifyContent: 'center', marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center' },
     addbutton1:
-    { flexDirection: 'row', alignSelf: 'center'},
+        { flexDirection: 'row', alignSelf: 'center' },
     addbuttontxt:
-    { color: 'grey', fontSize: 15, marginLeft: 4, marginTop: 1 }
+        { color: 'grey', fontSize: 15, marginLeft: 4, marginTop: 1 }
 })

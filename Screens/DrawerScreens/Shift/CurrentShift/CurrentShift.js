@@ -9,7 +9,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HeaderCommon from '../../HeaderCommon';
 import { styles } from './styles';
-import { buttonmargin, buttonSize, buttonWidth, ShiftHeight, ShiftWidth } from '../Functions1';
 
 export default function CurrentShift({ navigation, route }) {
     const WIDTH = Dimensions.get('window').width;

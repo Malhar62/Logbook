@@ -13,7 +13,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HeaderCommon from '../../HeaderCommon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './styles'
-import { buttonmargin, horizontal, iconMargin, setMargin1, ShiftHeight, ShiftWidth, buttonSize, buttonWidth } from '../../Shift/Functions1';
 export default function StartShift({ navigation }) {
     const WIDTH = Dimensions.get('window').width;
     const HEIGHT = Dimensions.get('window').height;
@@ -83,7 +82,7 @@ export default function StartShift({ navigation }) {
                         <TouchableOpacity onPress={() => navigation.navigate('Company')} >
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={styles.txt}>{company}</Text>
-                                <View style={{ position: 'absolute' }}>
+                                <View style={styles.iconview}>
                                     <AntDesign name={'down'} size={20} style={styles.icon} />
                                 </View>
                             </View>
@@ -94,7 +93,7 @@ export default function StartShift({ navigation }) {
                         <TouchableOpacity onPress={() => navigation.navigate('JobSite')} >
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={styles.txt}>{job}</Text>
-                                <View style={{ position: 'absolute' }}>
+                                <View style={styles.iconview}>
                                     <AntDesign name={'down'} size={20} style={styles.icon} />
                                 </View>
                             </View>
@@ -104,7 +103,7 @@ export default function StartShift({ navigation }) {
                         <Text>Date</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={styles.txt}>{date}</Text>
-                            <View style={{ position: 'absolute' }}>
+                            <View style={styles.iconview}>
                                 <MaterialIcons name={'date-range'} size={20} style={styles.icon} />
                             </View>
                         </View>
@@ -113,7 +112,7 @@ export default function StartShift({ navigation }) {
                         <Text>Time</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={styles.txt}>{time}</Text>
-                            <View style={{ position: 'absolute' }}>
+                            <View style={styles.iconview}>
                                 <MaterialIcons name={'access-time'} size={20} style={styles.icon} />
                             </View>
                         </View>
@@ -124,7 +123,7 @@ export default function StartShift({ navigation }) {
                         <Text style={styles.txt2}>Start Shift</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={{ height: 10 }}></View>
+                <View style={{ height: 15 }}></View>
             </View>
 
         </View>

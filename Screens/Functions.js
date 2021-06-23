@@ -3,7 +3,6 @@ import { Dimensions } from 'react-native';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
-console.log('wid' + WIDTH)
 
 export const LoginTopHeight = () => {
     var viewheight = HEIGHT / 2.3727;
@@ -32,5 +31,9 @@ export const dashHeight = () => {
 }
 export const dashWidth = () => {
     var res = WIDTH / 1.12;
+    return res;
+}
+export const horizontal = () => {
+    var res = WIDTH / 17.5;
     return res;
 }

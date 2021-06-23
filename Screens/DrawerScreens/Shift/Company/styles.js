@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff', width: ShiftWidth(), height: ShiftHeight(), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
     },
     view: {
-        flexDirection: 'row', height: 70, marginHorizontal: horizontal(), marginTop: 15
+        flexDirection: 'row', height: 70, marginHorizontal: 15, marginTop: 15
     },
     txt1: {
         fontSize: 18
@@ -23,8 +23,8 @@ export const styles = StyleSheet.create({
     }, radio: {
         position: 'absolute', right: 0, marginTop: 5
     },
-    extra:{
-        width:textheight(),height:40
+    extra: {
+        width: textheight(), height: 40
     },
     view1:
         { flexDirection: 'row', marginHorizontal: 20, justifyContent: 'space-between' },

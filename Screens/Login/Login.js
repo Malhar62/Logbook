@@ -12,8 +12,8 @@ import Common from '../Common'
 import Feather from 'react-native-vector-icons/Feather';
 import CheckBox from '@react-native-community/checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LoginBottomHeight,setMargin,buttonSize } from '../Functions';
-import {styles} from './styles';
+import { LoginBottomHeight, setMargin, buttonSize } from '../Functions';
+import { styles } from './styles';
 export default function Login({ navigation }) {
 
   React.useEffect(() => {
@@ -95,7 +95,7 @@ export default function Login({ navigation }) {
           onChangeText={text => setName(text)}
           style={styles.txtinp}
         />
-        <View style={{ width: 320, height: 70, borderBottomColor: 'grey', borderBottomWidth: 1, alignSelf: 'center', flexDirection: 'row', alignSelf: 'center', }}>
+        <View style={styles.txtipview}>
           <TextInput
             placeholder='Password'
             secureTextEntry={flag}
@@ -103,7 +103,8 @@ export default function Login({ navigation }) {
             onChangeText={text => setPass(text)}
             style={styles.txtinp1}
           />
-          <Feather name={flag ? 'eye-off' : 'eye'} color={flag ? 'black' : 'grey'} size={25} onPress={() => setFlag(!flag)} style={{  marginTop: setMargin() }} />
+          <Feather name={flag ? 'eye-off' : 'eye'} color={flag ? 'black' : 'grey'} size={25} onPress={() => setFlag(!flag)} style={{ marginTop: setMargin(), right: 0, position: 'absolute' }} />
+
         </View>
         <View style={styles.view1}>
           <View style={{ flexDirection: 'row' }}>
