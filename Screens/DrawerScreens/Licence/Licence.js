@@ -1,6 +1,6 @@
 import React from 'react';
-import LicenceDetail from './LicenceDetail';
-import UpdateDetail from './UpdateLicence';
+import LicenceDetail from './LicenceDetail/LicenceDetail';
+import UpdateDetail from './UpdateLicence/UpdateLicence';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();

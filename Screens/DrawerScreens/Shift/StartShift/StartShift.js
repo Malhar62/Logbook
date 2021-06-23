@@ -13,6 +13,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HeaderCommon from '../../HeaderCommon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './styles'
+import WithIcon from './WithIcon'
+import WithoutIcon from './WithoutIcon';
 export default function StartShift({ navigation }) {
     const WIDTH = Dimensions.get('window').width;
     const HEIGHT = Dimensions.get('window').height;
@@ -59,64 +61,24 @@ export default function StartShift({ navigation }) {
             setTime(hours + ':' + min + ':' + sec + ' AM');
         }
     }, [])
+    function onNavi(data) {
+        if (data !== '') {
+            navigation.navigate(data);
+        }
+    }
     return (
-        <View>
+        <SafeAreaView>
             <HeaderCommon onNavi={() => navigation.goBack()} name='Start Shift' />
             <View elevation={5} style={styles.main}>
                 <ScrollView
                     showsVerticalScrollIndicator={false}>
-                    <View style={styles.view1}>
-                        <Text>Username</Text>
-                        <Text style={styles.txt}>Shanice Barwick</Text>
-                    </View>
-                    <View style={styles.view1}>
-                        <Text>Email Address</Text>
-                        <Text style={styles.txt}>Shanice.barwick@baxter.com</Text>
-                    </View>
-                    <View style={[styles.view1, { borderBottomWidth: 0 }]}>
-                        <Text>Licence Number</Text>
-                        <Text style={styles.txt}>RVLG336HSD8</Text>
-                    </View>
-                    <View style={styles.view1}>
-                        <Text>Main Company</Text>
-                        <TouchableOpacity onPress={() => navigation.navigate('Company')} >
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text style={styles.txt}>{company}</Text>
-                                <View style={styles.iconview}>
-                                    <AntDesign name={'down'} size={20} style={styles.icon} />
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.view1}>
-                        <Text>Job site</Text>
-                        <TouchableOpacity onPress={() => navigation.navigate('JobSite')} >
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text style={styles.txt}>{job}</Text>
-                                <View style={styles.iconview}>
-                                    <AntDesign name={'down'} size={20} style={styles.icon} />
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.view1}>
-                        <Text>Date</Text>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Text style={styles.txt}>{date}</Text>
-                            <View style={styles.iconview}>
-                                <MaterialIcons name={'date-range'} size={20} style={styles.icon} />
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.view1}>
-                        <Text>Time</Text>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Text style={styles.txt}>{time}</Text>
-                            <View style={styles.iconview}>
-                                <MaterialIcons name={'access-time'} size={20} style={styles.icon} />
-                            </View>
-                        </View>
-                    </View>
+
+                    <WithoutIcon first={'Email Address'} second={'Shanice Barwick'} />
+                    <WithoutIcon first={'Licence Number'} second={'RVLG336HSD8'} />
+                    <WithIcon first={'Main Company'} second={company} onNavi={(data) => onNavi(data)} flag='ANT' />
+                    <WithIcon first={'Job Site'} second={job} onNavi={(data) => onNavi(data)} flag='ANT' />
+                    <WithIcon first={'Date'} second={date} flag='' onNavi={(data) => onNavi(data)} name='date-range' />
+                    <WithIcon first={'Date'} second={date} flag='' onNavi={(data) => onNavi(data)} name='access-time' />
                 </ScrollView>
                 <View style={styles.button}>
                     <TouchableOpacity onPress={() => navigation.navigate('CurrentShift', { company, job, date, time })} >
@@ -126,6 +88,6 @@ export default function StartShift({ navigation }) {
                 <View style={{ height: 15 }}></View>
             </View>
 
-        </View>
+        </SafeAreaView>
     );
 }

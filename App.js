@@ -16,9 +16,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Screens/Login/Login';
 import Forgot from './Screens/Forgot/Forgot';
 import Home from './Screens/Home/Home';
+import {store} from './MST/store';
 const Stack = createStackNavigator();
 
-export default function App() {
+ function RootNavigation() {
       SplashScreen.hide();
   return (
     <NavigationContainer>
@@ -31,5 +32,7 @@ export default function App() {
   );
 };
 
-
+export default function App() {
+  return <RootNavigation Store={store} />;
+}
 
