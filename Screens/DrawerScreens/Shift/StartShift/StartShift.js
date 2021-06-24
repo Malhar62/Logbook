@@ -78,7 +78,7 @@ export default function StartShift({ navigation }) {
                     <WithIcon first={'Main Company'} second={company} onNavi={(data) => onNavi(data)} flag='ANT' />
                     <WithIcon first={'Job Site'} second={job} onNavi={(data) => onNavi(data)} flag='ANT' />
                     <WithIcon first={'Date'} second={date} flag='' onNavi={(data) => onNavi(data)} name='date-range' />
-                    <WithIcon first={'Date'} second={date} flag='' onNavi={(data) => onNavi(data)} name='access-time' />
+                    <WithIcon first={'TIme'} second={time} flag='' onNavi={(data) => onNavi(data)} name='access-time' />
                 </ScrollView>
                 <View style={styles.button}>
                     <TouchableOpacity onPress={() => navigation.navigate('CurrentShift', { company, job, date, time })} >
