@@ -30,7 +30,10 @@ const RootStore = types
     images: types.optional(types.array(image), [{ link: URL }]),
     tasks: types.optional(types.string, ''),
     categories: types.optional(types.string, ''),
-    desp: types.optional(types.string, '')
+    desp: types.optional(types.string, ''),
+    extraImage: types.optional(types.array(image), []),
+    RealDate: types.optional(types.string, ''),
+    RealTime: types.optional(types.string, ''),
   })
 
   .actions((self) => ({
@@ -46,6 +49,7 @@ const RootStore = types
       self.licences = [...array];
     },
     addLog(data) {
+      //  self.images.splice(0, 1);
       let obj = {
         name: data.name,
         Licence: data.Licence,
@@ -61,7 +65,6 @@ const RootStore = types
         image: getSnapshot(self.images)
       }
       self.logs.push(obj);
-      self.images = [{ link: URL }];
       console.log(self.logs)
     },
     addImage(data) {
@@ -78,6 +81,64 @@ const RootStore = types
     setDesp(data) {
       self.desp = data;
       console.log('desp: ', self.desp)
+    },
+    deleteImage(data) {
+      let array = [...self.images];
+      array.splice(data, 1);
+      self.images = [...array];
+      console.log('deleted')
+    },
+
+    clearData() {
+      var data = new Date().getDate();
+      var month = new Date().getMonth() + 1;
+      var year = new Date().getFullYear();
+      var hours = new Date().getHours();
+      var min = new Date().getMinutes();
+      var sec = new Date().getSeconds();
+      self.categories = 'Category';
+      self.tasks = 'Task';
+      self.desp = 'Enter Description';
+      self.RealDate = data + '-' + month + '-' + year;
+      self.RealTime = hours + ':' + min + ':' + sec
+      self.images = [{ link: URL }];
+
+    },
+    setForEdit(data) {
+      self.tasks = data.task;
+      self.categories = data.category;
+      self.desp = data.description;
+      self.images = data.image
+      let dupli = [...self.images]
+      dupli.splice(0, 1, { link: URL });
+      self.images = [...dupli];
+      console.log(self.images)
+    },
+    editLog(data, index) {
+      //  self.images.splice(0, 1);
+      let obj = {
+        name: data.name,
+        Licence: data.Licence,
+        job: data.job,
+        company: data.company,
+        category: store.categories,
+        task: store.tasks,
+        description: store.desp,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        startTime: data.startTime,
+        endTime: data.endTime,
+        image: getSnapshot(self.images)
+      }
+      let array = [...self.logs];
+      array.splice(index, 1, obj);
+      self.logs = [...array];
+    },
+    deletefirst(data){
+      self.extraImage=[...data];
+      let array = [...self.extraImage];
+      array.splice(0, 1);
+      self.extraImage = [...array];
     }
   }));
 export const store = RootStore.create({

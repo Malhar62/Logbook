@@ -10,7 +10,9 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { headerHeight } from './Functions1';
-export default function HeaderCommon({ navigation, onNavi, name }) {
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+export default function HeaderCommon({ navigation, onNavi, name,extra,onEdit }) {
     return (
         <View style={styles.main1}>
             <View style={{ position: 'absolute', left: 5 }}>
@@ -19,6 +21,9 @@ export default function HeaderCommon({ navigation, onNavi, name }) {
             <View>
                 <Text style={styles.txt}>{name}</Text>
             </View>
+            {extra=='yes' &&<View style={{position:'absolute',right:10}}>
+                <MaterialIcons name='edit' size={20} color='#fff' onPress={()=>onEdit()}/>
+            </View>}
         </View>
     );
 }

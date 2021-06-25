@@ -17,14 +17,22 @@ import { buttonWidth1, ShiftHeight, ShiftWidth, textheight } from '../../Functio
 import TopBox from './TopBox';
 import { store } from '../../../../MST/store';
 import { launchCamera, launchImageLibrary } from "react-native-image-picker"
+import { getSnapshot } from 'mobx-state-tree';
 
 export default function AddLog({ navigation, route }) {
-    const [path, setPath] = React.useState('')
+    const [title, setTitle] = useState('Add')
     const [list, setList] = React.useState(store.images.toJSON())
-    const [date1, setDate1] = React.useState('')
-    const [time1, setTime1] = React.useState('')
-    const [extra, setExtra] = React.useState(route.params.user.date)
-    const [extra1, setExtra1] = React.useState(route.params.user.time)
+    const [ind, setInd] = React.useState()
+    React.useEffect(() => {
+        navigation.addListener('focus', () => {
+            if (route.params) {
+                store.setForEdit(route.params.user)
+                setList(store.images.toJSON())
+                setTitle('Edit')
+                setInd(route.params.index)
+            }
+        })
+    }, [navigation]);
     const selectFile = () => {
         let options = {
             storageOptions: {
@@ -62,30 +70,48 @@ export default function AddLog({ navigation, route }) {
         var hours = new Date().getHours();
         var min = new Date().getMinutes();
         var sec = new Date().getSeconds();
-
-        let obj = {
-            name: 'Shanice barwick',
-            Licence: 'HHV62J28C',
-            job: 'Baxter',
-            company: 'Guardio Securities',
-            category: store.categories,
-            task: store.tasks,
-            description: store.desp,
-            startDate: extra,
-            endDate: date + '-' + month + '-' + year,
-            startTime: extra1,
-            endTime: hours + ':' + min + ':' + sec,
-        }
-        if (obj.category == '' || obj.task == '') {
-            alert('enter details')
+        if (title == 'Add') {
+            let obj = {
+                name: 'Shanice barwick',
+                Licence: 'HHV62J28C',
+                job: 'Baxter',
+                company: 'Guardio Securities',
+                category: store.categories,
+                task: store.tasks,
+                description: store.desp,
+                startDate: store.RealDate,
+                endDate: date + '-' + month + '-' + year,
+                startTime: store.RealTime,
+                endTime: hours + ':' + min + ':' + sec,
+            }
+            if (obj.category == '' || obj.task == '') {
+                alert('enter details')
+            } else {
+                store.addLog(obj)
+                navigation.navigate('Logs')
+            }
         } else {
-            store.addLog(obj)
-            navigation.navigate('Logs')
+            let obj = {
+                name: 'Shanice barwick',
+                Licence: 'HHV62J28C',
+                job: 'Baxter',
+                company: 'Guardio Securities',
+                category: store.categories,
+                task: store.tasks,
+                description: store.desp,
+                startDate: store.RealDate,
+                endDate: date + '-' + month + '-' + year,
+                startTime: store.RealTime,
+                endTime: hours + ':' + min + ':' + sec,
+            }
+            store.editLog(obj, ind)
+            navigation.navigate('Logs');
         }
+        setTitle('Add')
     }
     return (
         <SafeAreaView>
-            <HeaderCommon onNavi={() => navigation.goBack()} name='Add Time log' />
+            <HeaderCommon onNavi={() => navigation.goBack()} name={title == 'Add' ? 'Add Time log' : 'Edit Time Log'} />
             <View elevation={5} style={styles.main}>
                 <FlatList
                     numColumns={4}
@@ -98,9 +124,15 @@ export default function AddLog({ navigation, route }) {
                                 selectFile()
                             }
                         }}>
-                            <View style={{ marginLeft: 8, marginTop: 10, flexDirection: 'row', width: 80, height: 80 }}>
-                                <Image source={{ uri: item.link }} style={{ width: 75, height: 75, borderWidth: 1, borderRadius: 10 }} />
-                                {index != 0 && <Entypo name='circle-with-cross' color='#e62e46' size={20} style={{ position: 'absolute', backgroundColor: 'transparent', right: 0, top: 0 }} />}
+                            <View style={styles.img1}>
+                                <Image source={{ uri: item.link }} style={styles.imgview} />
+                                {index != 0 &&
+                                    <Entypo
+                                        onPress={() => {
+                                            store.deleteImage(index);
+                                            setList(store.images.toJSON())
+                                        }}
+                                        name='circle-with-cross' color='#e62e46' size={20} style={{ position: 'absolute', backgroundColor: 'transparent', right: 0, top: 0 }} />}
                             </View>
                         </TouchableOpacity>
                     )}
@@ -114,11 +146,11 @@ export default function AddLog({ navigation, route }) {
                                 onPress={() => {
                                     addLog()
                                 }}
-                            ><Text style={styles.buttontxt}>Add</Text></TouchableOpacity>
+                            ><Text style={styles.buttontxt}>{title}</Text></TouchableOpacity>
                         </View>
                         <View style={[styles.button, { backgroundColor: '#fff', borderColor: 'grey', borderWidth: 1 }]}>
                             <TouchableOpacity
-                                onPress={() => { }}
+                                onPress={() => navigation.goBack()}
                             ><Text style={[styles.buttontxt, { color: 'grey' }]}>Cancel</Text></TouchableOpacity>
                         </View>
                     </View>
@@ -139,5 +171,10 @@ const styles = StyleSheet.create({
     button:
         { width: buttonWidth1(), height: 45, backgroundColor: '#524ae8', borderRadius: 10, justifyContent: 'center' },
     buttontxt:
-        { color: '#fff', alignSelf: 'center', fontSize: 15 }
+        { color: '#fff', alignSelf: 'center', fontSize: 15 },
+    img1:
+        { marginLeft: 8, marginTop: 10, flexDirection: 'row', width: 80, height: 80 },
+    imgview:
+        { width: 75, height: 75, borderWidth: 1, borderRadius: 10 },
+
 })

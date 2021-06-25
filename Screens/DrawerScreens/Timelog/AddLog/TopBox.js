@@ -15,16 +15,12 @@ import { store } from '../../../../MST/store';
 export default function TopBox({ }) {
     const [flag, setFlag] = React.useState(false)
     const [flag1, setFlag1] = React.useState(false)
-    const [name, setName] = React.useState('category')
-    const [name1, setName1] = React.useState('Tasks')
     const [remember, setRemember] = useState(false)
-    const [des, setDes] = useState('')
+    const [des, setDes] = useState(store.desp)
     const [sub, setSub] = useState([])
-    const WIDTH = Dimensions.get('window').width;
-    const HEIGHT = Dimensions.get('window').height;
     let cat = [
         {
-            name: 'Patrolling', task: [
+            name: 'Patrolling', title: [
                 { title: 'PatrolA' },
                 { title: 'PatrolB' },
                 { title: 'PatrolC' },
@@ -59,7 +55,7 @@ export default function TopBox({ }) {
                 { title: 'Draw D' },
             ]
         }, {
-            name: 'Supervising', title: [
+            name: 'Supervising', title1: [
                 { title: 'supervise A' },
                 { title: 'supervise B' },
                 { title: 'supervise C' },
@@ -74,7 +70,7 @@ export default function TopBox({ }) {
                     <View style={styles.view1}>
                         <TouchableOpacity onPress={() => {
                             setFlag1(false); setFlag(!flag)
-                        }}><Text style={{ fontSize: 15, color: 'grey' }}>{name}</Text></TouchableOpacity>
+                        }}><Text style={{ fontSize: 15, color: 'grey' }}>{store.categories}</Text></TouchableOpacity>
                         <AntDesign name={flag ? 'down' : 'up'} size={15} style={styles.icon} />
                     </View>
                     {flag && <FlatList
@@ -82,14 +78,15 @@ export default function TopBox({ }) {
                         renderItem={({ item, index }) => (
                             <View style={styles.view2}>
                                 <TouchableOpacity onPress={() => {
-                                    setFlag(!flag); setName(item.name); setSub(cat[index].title);
+                                    setFlag(!flag); setSub(item.title);
                                     store.setCategory(item.name)
+                                    console.log(item.title[0].title)
                                     for (var i = 0; i < 4; i++) {
-                                        if (name1 != item.title[i].title) {
-                                            setName1('Tasks')
-                                            store.setTask('')
+                                        if (store.tasks != item.title[i].title) {
+                                            store.setTask('Tasks');
                                         }
                                     }
+
                                 }}>
                                     <Text style={styles.txt}>{item.name}</Text>
                                 </TouchableOpacity>
@@ -100,14 +97,15 @@ export default function TopBox({ }) {
                 </View>
                 <View style={{ marginTop: 30 }}>
                     <View style={{ flexDirection: 'row', marginHorizontal: 8, }}>
-                        <TouchableOpacity onPress={() => { setFlag(false); setFlag1(!flag1) }}><Text style={{ fontSize: 15, color: 'grey' }}>{name1}</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => { setFlag(false); setFlag1(!flag1) }}>
+                            <Text style={{ fontSize: 15, color: 'grey' }}>{store.tasks}</Text></TouchableOpacity>
                         <AntDesign name={flag1 ? 'down' : 'up'} size={15} style={styles.icon} />
                     </View>
                     {flag1 && <FlatList
                         data={sub}
                         renderItem={({ item, index }) => (
                             <View style={styles.inside}>
-                                <TouchableOpacity onPress={() => { setFlag1(!flag1); setName1(item.title); store.setTask(item.title) }}>
+                                <TouchableOpacity onPress={() => { setFlag1(!flag1); store.setTask(item.title) }}>
                                     <Text style={{ fontSize: 15, marginLeft: 5 }}>{item.title}</Text>
                                 </TouchableOpacity>
                             </View>

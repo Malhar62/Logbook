@@ -21,24 +21,15 @@ export default function Logs({ navigation }) {
     const [date, setDate] = React.useState('')
     const [time, setTime] = React.useState('')
     React.useEffect(() => {
-       navigation.addListener('focus', () => {
-        setList(store.logs.toJSON())
-        console.log(store.logs.toJSON())
+        navigation.addListener('focus', () => {
+            setList(store.logs.toJSON())
+            console.log(store.logs.toJSON())
+        })
+    }, [navigation]);
 
-       })        
-      }, [navigation]);
-    
     function gotoAdd() {
-        var data = new Date().getDate();
-        var month = new Date().getMonth() + 1;
-        var year = new Date().getFullYear();
-        var hours = new Date().getHours();
-        var min = new Date().getMinutes();
-        var sec = new Date().getSeconds();
-        setDate(data + '-' + month + '-' + year)
-        setTime(hours + ':' + min + ':' + sec  );
-        let obj = { date, time }
-        navigation.navigate('AddLog', { user: obj })
+        store.clearData()
+        navigation.navigate('AddLog')
     }
     return (
         <SafeAreaView>
@@ -57,6 +48,8 @@ export default function Logs({ navigation }) {
                         data={list}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity onPress={() => {
+                                let obj={item ,index}
+                                navigation.navigate('About', { user: obj})
                             }}>
                                 <View style={styles.view}>
                                     <View>
@@ -70,7 +63,7 @@ export default function Logs({ navigation }) {
                                 </View>
                             </TouchableOpacity>
                         )}
-                        keyExtractor={index=>index.toString()}
+                        keyExtractor={index => index.toString()}
                     />
                 </View>
             </View>
@@ -91,7 +84,7 @@ const styles = StyleSheet.create({
     icon: {
         right: 0, justifyContent: 'center', position: 'absolute', marginTop: 18
     }
-,
+    ,
     addbutton:
         { width: buttonWidth(), height: 40, justifyContent: 'center', marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center', top: 20 },
     addbutton1:
