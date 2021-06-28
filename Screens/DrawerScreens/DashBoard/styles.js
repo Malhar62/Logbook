@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     main1:
         { flexDirection: 'row', height: 60, width: dashWidth(), alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10 },
     main3:
-        { borderBottomColor: 'grey', width: (dashWidth()-30), alignSelf: 'center' },
+        { borderBottomColor: 'grey', width: (dashWidth() - 30), alignSelf: 'center' },
     main4: {
         height: dashHeight(), width: '100%', borderRadius: 0, backgroundColor: '#f1f1f1',
     },

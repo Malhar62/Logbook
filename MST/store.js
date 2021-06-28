@@ -134,8 +134,8 @@ const RootStore = types
       array.splice(index, 1, obj);
       self.logs = [...array];
     },
-    deletefirst(data){
-      self.extraImage=[...data];
+    deletefirst(data) {
+      self.extraImage = [...data];
       let array = [...self.extraImage];
       array.splice(0, 1);
       self.extraImage = [...array];
