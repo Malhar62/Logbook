@@ -13,6 +13,7 @@ import HeaderCommon from '../HeaderCommon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { buttonWidth, ShiftHeight, ShiftWidth } from '../Functions1';
 import { store } from '../../../MST/store';
+import { HEIGHT, WIDTH } from '../../Functions';
 export default function Logs({ navigation }) {
     const WIDTH = Dimensions.get('window').width;
     const HEIGHT = Dimensions.get('window').height;
@@ -73,7 +74,7 @@ export default function Logs({ navigation }) {
 }
 const styles = StyleSheet.create({
     main: {
-        backgroundColor: '#fff', width: ShiftWidth(), height: ShiftHeight(), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
+        backgroundColor: '#fff',width: WIDTH(360), height: HEIGHT(649), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
     },
     view: {
         flexDirection: 'row', marginHorizontal: 15, marginTop: 20
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     }
     ,
     addbutton:
-        { width: buttonWidth(), height: 40, justifyContent: 'center', marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center', top: 20 },
+        { width:WIDTH(320), height: 40, justifyContent: 'center', marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center', top: 20 },
     addbutton1:
         { flexDirection: 'row', alignSelf: 'center' },
     addbuttontxt:

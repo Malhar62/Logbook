@@ -9,10 +9,11 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { buttonmargin, buttonSize, buttonWidth, ShiftHeight, ShiftWidth } from '../../Functions1';
+import { WIDTH ,HEIGHT} from '../../../Functions';
 
 export const styles = StyleSheet.create({
     main: {
-        backgroundColor: '#fff', width: ShiftWidth(), height: ShiftHeight(), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
+        backgroundColor: '#fff', width: WIDTH(360), height: HEIGHT(649), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
     },
     icon: {
         marginTop: 10
@@ -21,13 +22,13 @@ export const styles = StyleSheet.create({
         color: 'grey'
     },
     button: {
-        width: buttonWidth(), marginBottom: 10, height: 40, justifyContent: 'center', alignSelf: 'center', borderRadius: 10, backgroundColor: '#e6354c'
+        width: WIDTH(320), marginBottom: 10, height: 40, justifyContent: 'center', alignSelf: 'center', borderRadius: 10, backgroundColor: '#e6354c'
     },
     txt2: {
         color: '#fff', alignSelf: 'center', fontSize: 15
     },
     addbutton:
-        { width: buttonWidth(), height: 40, justifyContent: 'center', marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center' },
+        { width:WIDTH(320), height: 40, justifyContent: 'center', marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center' },
     addbutton1:
         { flexDirection: 'row', alignSelf: 'center' },
     addbuttontxt:

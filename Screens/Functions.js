@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { Dimensions } from 'react-native';
 
-const WIDTH = Dimensions.get('window').width;
-const HEIGHT = Dimensions.get('window').height;
+const { height, width } = Dimensions.get('window');
+const BASE_HEIGHT = 759.27272
+const BASE_WIDTH = 392.7272
+export const HEIGHT = (data) => {
+    var result = height * data / BASE_HEIGHT;
+    return result;
+}
 
-export const LoginTopHeight = () => {
+export const WIDTH = data => {
+    var res = width * data / BASE_WIDTH;
+    return res;
+}
+/**export const LoginTopHeight = () => {
     var viewheight = HEIGHT / 2.3727;
     return viewheight
 }
@@ -36,4 +45,4 @@ export const dashWidth = () => {
 export const horizontal = () => {
     var res = WIDTH / 17.5;
     return res;
-}
+} */

@@ -10,15 +10,13 @@ import {
 } from 'react-native';
 import {styles} from './styles';
 import Common from '../Common';
-import { buttonSize, LoginBottomHeight, setMargin } from '../Functions';
+import { HEIGHT } from '../Functions';
 
 
 export default function Forgot({ navigation }) {
 
     const [mail, setMail] = React.useState('');
     const [massage, setMassage] = React.useState('');
-    const WIDTH = Dimensions.get('window').width;
-    const HEIGHT = Dimensions.get('window').height;
 
     React.useEffect(() => {
         Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
@@ -61,7 +59,7 @@ export default function Forgot({ navigation }) {
             behavior={'padding'}
             keyboardVerticalOffset={65}>
             <Common />
-            <View style={{ height: LoginBottomHeight(), backgroundColor: 'white' }}>
+            <View style={{ height: HEIGHT(450), backgroundColor: 'white' }}>
                 {keyboardStatus != 'Keyboard Shown' && <View>
                     <Text style={{ fontSize: 25, alignSelf: 'center', marginTop: 30 }}>Forgot Password</Text>
                     <Text style={styles.txt}>

@@ -12,7 +12,7 @@ import Common from '../Common'
 import Feather from 'react-native-vector-icons/Feather';
 import CheckBox from '@react-native-community/checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LoginBottomHeight, setMargin, buttonSize } from '../Functions';
+import { LoginBottomHeight, setMargin, buttonSize,HEIGHT } from '../Functions';
 import { styles } from './styles';
 export default function Login({ navigation }) {
 
@@ -47,8 +47,6 @@ export default function Login({ navigation }) {
       console.log('not remembered');
     }
   }
-  const WIDTH = Dimensions.get('window').width;
-  const HEIGHT = Dimensions.get('window').height;
   console.log('height : ' + HEIGHT)
   const [name, setName] = useState('');
   const [pass, setPass] = useState('');
@@ -103,7 +101,7 @@ export default function Login({ navigation }) {
             onChangeText={text => setPass(text)}
             style={styles.txtinp1}
           />
-          <Feather name={flag ? 'eye-off' : 'eye'} color={flag ? 'black' : 'grey'} size={25} onPress={() => setFlag(!flag)} style={{ marginTop: setMargin(), right: 0, position: 'absolute' }} />
+          <Feather name={flag ? 'eye-off' : 'eye'} color={flag ? 'black' : 'grey'} size={25} onPress={() => setFlag(!flag)} style={{ marginTop: HEIGHT(10), right: 0, position: 'absolute' }} />
 
         </View>
         <View style={styles.view1}>

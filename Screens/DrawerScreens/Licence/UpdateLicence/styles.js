@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     main: {
-        backgroundColor: '#fff', width: ShiftWidth(), height: ShiftHeight(), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
+        backgroundColor: '#fff',width: WIDTH(360), height: HEIGHT(649), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
     }, txt: {
         color: 'grey', fontSize: 15
     },
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         position: 'absolute', right: 0
     },
     button: {
-        position: 'absolute', bottom: 20, width: buttonWidth(), height: 40, justifyContent: 'center', alignSelf: 'center', borderRadius: 10, backgroundColor: '#524ae8'
+        position: 'absolute', bottom: 20, width: WIDTH(320), height: 40, justifyContent: 'center', alignSelf: 'center', borderRadius: 10, backgroundColor: '#524ae8'
     },
     txt2: {
         color: '#fff', alignSelf: 'center', fontSize: 18

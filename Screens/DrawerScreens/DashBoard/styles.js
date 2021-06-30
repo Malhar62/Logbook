@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import {
     StyleSheet
 } from 'react-native';
-import { dashHeight, dashWidth } from '../../Functions';
+import { dashHeight, dashWidth, HEIGHT, WIDTH } from '../../Functions';
 export const styles = StyleSheet.create({
     first: {
-        width: dashWidth(), alignSelf: 'center', backgroundColor: '#fff', borderWidth: 1, borderColor: 'rgba(158, 150, 150, .5)'
+        width: WIDTH(350), alignSelf: 'center', backgroundColor: '#fff', borderWidth: 1, borderColor: 'rgba(158, 150, 150, .5)'
     },
     main: {
         width: '100%', borderRadius: 10, backgroundColor: '#ebe6e6',
     },
     main1:
-        { flexDirection: 'row', height: 60, width: dashWidth(), alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10 },
+        { flexDirection: 'row', height: 60, width: WIDTH(350), alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: 'grey', borderTopEndRadius: 10, borderTopLeftRadius: 10 },
     main3:
-        { borderBottomColor: 'grey', width: (dashWidth() - 30), alignSelf: 'center' },
+        { borderBottomColor: 'grey', width: (WIDTH(350) - 30), alignSelf: 'center' },
     main4: {
-        height: dashHeight(), width: '100%', borderRadius: 0, backgroundColor: '#f1f1f1',
+        height: HEIGHT(650), width: '100%', borderRadius: 0, backgroundColor: '#f1f1f1',
     },
     txt1:
         { color: 'grey', marginLeft: 7, fontSize: 18 },

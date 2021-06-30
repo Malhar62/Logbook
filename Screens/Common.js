@@ -9,16 +9,14 @@ import {
   useColorScheme,
   View, Button, TextInput, Image, Dimensions, SafeAreaView, TouchableOpacity
 } from 'react-native';
-import { LoginTopHeight, logoDimension } from '../Screens/Functions';
+import { HEIGHT, LoginTopHeight, logoDimension, WIDTH } from '../Screens/Functions';
 
 export default function Common() {
-  const WIDTH = Dimensions.get('window').width;
-  const HEIGHT = Dimensions.get('window').height;
 
   return (
     <View style={styles.main}>
       <View>
-        <Image source={require('../Components/logo.png')} style={{ width: logoDimension(), height: logoDimension(), alignSelf: 'center' }} />
+        <Image source={require('../Components/logo.png')} style={{ width: WIDTH(70), height: HEIGHT(70), alignSelf: 'center' }} />
         <Text style={styles.txt}>LOGBOOKS PRO</Text>
       </View>
     </View>
@@ -26,7 +24,7 @@ export default function Common() {
 }
 const styles = StyleSheet.create({
   main: {
-    width: Dimensions.get('window').width, height: LoginTopHeight(), backgroundColor: '#524ae8', justifyContent: 'center'
+    width: Dimensions.get('window').width, height: HEIGHT(320), backgroundColor: '#524ae8', justifyContent: 'center'
   }, txt: {
     fontSize: 30, color: 'white', fontFamily: 'serif-monospace', marginTop: 10, alignSelf: 'center'
   }

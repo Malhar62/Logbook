@@ -18,6 +18,7 @@ import TopBox from './TopBox';
 import { store } from '../../../../MST/store';
 import { launchCamera, launchImageLibrary } from "react-native-image-picker"
 import { getSnapshot } from 'mobx-state-tree';
+import { HEIGHT, WIDTH } from '../../../Functions';
 
 export default function AddLog({ navigation, route }) {
     const [title, setTitle] = useState('Add')
@@ -164,12 +165,12 @@ export default function AddLog({ navigation, route }) {
 }
 const styles = StyleSheet.create({
     main: {
-        backgroundColor: '#fff', width: ShiftWidth(), height: ShiftHeight(), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
+        backgroundColor: '#fff', width: WIDTH(360), height: HEIGHT(649), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
     },
     view1:
         { flexDirection: 'row', marginHorizontal: 20, justifyContent: 'space-between' },
     button:
-        { width: buttonWidth1(), height: 45, backgroundColor: '#524ae8', borderRadius: 10, justifyContent: 'center' },
+        { width: WIDTH(320), height: 45, backgroundColor: '#524ae8', borderRadius: 10, justifyContent: 'center' },
     buttontxt:
         { color: '#fff', alignSelf: 'center', fontSize: 15 },
     img1:

@@ -13,6 +13,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HeaderCommon from '../HeaderCommon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ShiftHeight, ShiftWidth } from '../Functions1';
+import { HEIGHT, WIDTH } from '../../Functions';
 export default function EditLog({ navigation }) {
     const WIDTH = Dimensions.get('window').width;
     const HEIGHT = Dimensions.get('window').height;
@@ -28,6 +29,6 @@ export default function EditLog({ navigation }) {
 }
 const styles = StyleSheet.create({
     main: {
-        backgroundColor: '#fff', width: ShiftWidth(), height: ShiftHeight(), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
+        backgroundColor: '#fff',width: WIDTH(360), height: HEIGHT(649), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
     },
 })

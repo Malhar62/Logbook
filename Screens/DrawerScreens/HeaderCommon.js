@@ -11,8 +11,9 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { headerHeight } from './Functions1';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { HEIGHT } from '../Functions';
 
-export default function HeaderCommon({ navigation, onNavi, name,extra,onEdit }) {
+export default function HeaderCommon({ navigation, onNavi, name, extra, onEdit }) {
     return (
         <View style={styles.main1}>
             <View style={{ position: 'absolute', left: 5 }}>
@@ -21,15 +22,15 @@ export default function HeaderCommon({ navigation, onNavi, name,extra,onEdit }) 
             <View>
                 <Text style={styles.txt}>{name}</Text>
             </View>
-            {extra=='yes' &&<View style={{position:'absolute',right:10}}>
-                <MaterialIcons name='edit' size={20} color='#fff' onPress={()=>onEdit()}/>
+            {extra == 'yes' && <View style={{ position: 'absolute', right: 10 }}>
+                <MaterialIcons name='edit' size={20} color='#fff' onPress={() => onEdit()} />
             </View>}
         </View>
     );
 }
 const styles = StyleSheet.create({
     main1: {
-        width: Dimensions.get('window').width, alignSelf: 'center', height: headerHeight(), backgroundColor: '#524ae8', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'
+        width: Dimensions.get('window').width, alignSelf: 'center', height: HEIGHT(50), backgroundColor: '#524ae8', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'
     },
     txt:
         { fontSize: 20, color: '#fff', textAlign: 'center' }

@@ -15,6 +15,7 @@ import HeaderCommon from '../HeaderCommon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ShiftHeight, ShiftWidth } from '../Functions1';
 import AboutFooter from './AboutFooter';
+import { HEIGHT, WIDTH } from '../../Functions';
 export default function About({ navigation, route }) {
     const [fake, setFake] = useState([])
     const shorted = route.params.user.item;
@@ -67,6 +68,6 @@ export default function About({ navigation, route }) {
 }
 const styles = StyleSheet.create({
     main: {
-        backgroundColor: '#fff', width: ShiftWidth(), height: ShiftHeight(), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
+        backgroundColor: '#fff',width: WIDTH(360), height: HEIGHT(649), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
     },
 })
