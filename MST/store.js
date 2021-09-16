@@ -34,6 +34,7 @@ const RootStore = types
     extraImage: types.optional(types.array(image), []),
     RealDate: types.optional(types.string, ''),
     RealTime: types.optional(types.string, ''),
+    theme: types.optional(types.boolean, false)
   })
 
   .actions((self) => ({
@@ -139,6 +140,9 @@ const RootStore = types
       let array = [...self.extraImage];
       array.splice(0, 1);
       self.extraImage = [...array];
+    },
+    changeMode(data) {
+      self.theme = data
     }
   }));
 export const store = RootStore.create({

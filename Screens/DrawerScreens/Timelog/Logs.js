@@ -49,8 +49,8 @@ export default function Logs({ navigation }) {
                         data={list}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity onPress={() => {
-                                let obj={item ,index}
-                                navigation.navigate('About', { user: obj})
+                                let obj = { item, index }
+                                navigation.navigate('About', { user: obj })
                             }}>
                                 <View style={styles.view}>
                                     <View>
@@ -74,7 +74,7 @@ export default function Logs({ navigation }) {
 }
 const styles = StyleSheet.create({
     main: {
-        backgroundColor: '#fff',width: WIDTH(360), height: HEIGHT(649), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
+        backgroundColor: '#fff', width: WIDTH(360), height: HEIGHT(649), borderRadius: 10, borderWidth: 0, alignSelf: 'center', marginTop: 15
     },
     view: {
         flexDirection: 'row', marginHorizontal: 15, marginTop: 20
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     }
     ,
     addbutton:
-        { width:WIDTH(320), height: 40, justifyContent: 'center', marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center', top: 20 },
+        { width: WIDTH(320), height: 40, justifyContent: 'center', marginBottom: 20, borderColor: 'grey', borderWidth: 1, borderRadius: 10, alignSelf: 'center', top: 20 },
     addbutton1:
         { flexDirection: 'row', alignSelf: 'center' },
     addbuttontxt:

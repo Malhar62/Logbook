@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -13,8 +13,10 @@ import Header from './Header';
 import TopChat from './TopChat';
 import { MenuData } from './MenuData';
 import { styles } from './styles';
+import axios from 'axios';
 export default function DashBoard({ navigation }) {
-    console.log('wid'+Dimensions.get('window').width)
+   
+    console.log('wid' + Dimensions.get('window').width)
 
     React.useEffect(() => {
         checking_location()
@@ -82,7 +84,7 @@ export default function DashBoard({ navigation }) {
                                 borderBottomLeftRadius: index == 3 ? 10 : 0
                             }]}>
                                 <View style={[styles.main1], { borderBottomWidth: ind == index ? 1 : 0, borderBottomColor: 'grey' }}>
-                                    <View style={{ flexDirection: 'row', marginTop: 4,marginBottom:4 }}>
+                                    <View style={{ flexDirection: 'row', marginTop: 4, marginBottom: 4 }}>
                                         <Text style={styles.txt2}>{item.title}</Text>
                                         <AntDesign style={styles.icon} name={index == ind ? 'down' : 'up'} size={20}
                                             onPress={() => {

@@ -12,7 +12,7 @@ import Common from '../Common'
 import Feather from 'react-native-vector-icons/Feather';
 import CheckBox from '@react-native-community/checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LoginBottomHeight, setMargin, buttonSize,HEIGHT } from '../Functions';
+import { LoginBottomHeight, setMargin, buttonSize, HEIGHT } from '../Functions';
 import { styles } from './styles';
 export default function Login({ navigation }) {
 
