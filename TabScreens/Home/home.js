@@ -18,6 +18,7 @@ import { URL } from './link'
 import HomeHeader from './header';
 import ALVINA from '../../Constants'
 import Time from './time';
+import { styles } from './styles';
 
 export default function HomeScreen({ route }) {
     const navigation = useNavigation();
@@ -28,9 +29,9 @@ export default function HomeScreen({ route }) {
     const [title, setTitle] = useState(route.params ? route.params.type : 'general')
     const [load, setLoad] = useState(false)
     const isFocused = useIsFocused()
+    const [theme, setTheme] = useState(null)
+
     const scroll = React.useRef()
-    const BACK_COLOR = store.theme ? '#101010' : '#fff'
-    const FONT_COLOR = store.theme ? '#fff' : '#3d3d3d'
     const longines = React.useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
@@ -39,8 +40,13 @@ export default function HomeScreen({ route }) {
             funcky(route.params ? route.params.type : 'general')
             setTitle(route.params ? route.params.type : 'general')
             scroll.current.scrollToOffset({ animated: true, offset: 0 })
+            setTheme(store.theme)
+            setLoad(false)
         }
     }, [isFocused])
+    const BACK_COLOR = theme ? '#101010' : '#fff'
+    const FONT_COLOR = theme ? '#fff' : '#3d3d3d'
+
     React.useEffect(() => {
         Animated.spring(longines, {
             toValue: 1,
@@ -72,7 +78,6 @@ export default function HomeScreen({ route }) {
                 //setImg(response.data.articles[0].urlToImage);
                 //setText(response.data.articles[0].title)
             });
-        setLoad(false)
     }
 
     const onViewRef = React.useRef((viewableItems) => {
@@ -104,23 +109,20 @@ export default function HomeScreen({ route }) {
             }
         }
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('detail', { data: list, index, type: title })}>
-                <View style={{ width: '100%', height: HEIGHT(120), flexDirection: 'row', marginHorizontal: 5, marginTop: 10 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('detail', { data: list, index, type: title, mode: 'home' })}>
+                <View style={styles.VIEW}>
                     <View>
                         <Image
                             source={{ uri: item.urlToImage == null ? URL : item.urlToImage }}
-                            style={{ height: HEIGHT(120), width: WIDTH(120), borderRadius: 10 }}
+                            style={styles.IMG}
                         />
                     </View>
-                    <View style={{ justifyContent: 'space-between', width: Dimensions.get('screen').width - WIDTH(120), marginLeft: 5 }}>
+                    <View style={styles.TOP}>
                         <View>
                             <Text numberOfLines={3} style={{ fontSize: 15, color: FONT_COLOR }}>{item.title}</Text>
                         </View>
                         <View style={{ flexDirection: 'row' }}>
-                            <View style={{
-                                backgroundColor: '#a89fde',
-                                width: text_width(title), height: HEIGHT(25), borderRadius: 5, justifyContent: 'center', alignItems: 'center'
-                            }}>
+                            <View style={[{ width: text_width(title) }, styles.txt]}>
                                 <Text style={{ color: '#fff' }}>{title.toUpperCase()}</Text>
                             </View>
                             <View style={{
@@ -150,15 +152,7 @@ export default function HomeScreen({ route }) {
             {(load == false) ?
                 <View>
                     <ImageBackground source={{ uri: img }} style={{ height: HEIGHT(250) }}>
-                        <View style={{
-                            height: HEIGHT(125),
-                            width: '100%',
-                            justifyContent: 'center',
-                            position: 'absolute',
-                            bottom: 0,
-                            backgroundColor: 'rgba(52, 52, 52, 0.5)',
-                            alignItems: 'center'
-                        }}>
+                        <View style={styles.IMGBACK}>
                             <Text style={{ color: '#fff', fontSize: 20 }}>{text}</Text>
                         </View>
                     </ImageBackground>

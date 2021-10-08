@@ -13,12 +13,20 @@ import { store } from '../../MST/store'
 import { newsStore } from '../../MST/newsStore';
 import { HEIGHT, WIDTH } from '../../Screens/Functions';
 import SavedHeader from '../Detail/SavedHeader';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { commonstyles } from '../Profile/commonstyles';
 
 export default function VisitedScreen() {
 
     const BACK_COLOR = store.theme ? '#101010' : '#fff'
     const FONT_COLOR = store.theme ? '#fff' : '#3d3d3d'
+    const ICON = store.theme ? 'grey' : '#495b78'
     const navigation = useNavigation();
+    const [list, setList] = useState([])
+
+    useEffect(() => {
+        setList(newsStore.visited.toJSON())
+    }, [])
 
     function Insider({ item, index }) {
         function text_width(data) {
@@ -39,15 +47,19 @@ export default function VisitedScreen() {
             }
         }
         return (
-            <TouchableOpacity onPress={() => { }}>
-                <View style={{ width: '100%', height: HEIGHT(120), flexDirection: 'row', marginHorizontal: 5, marginTop: 10 }}>
+            <TouchableOpacity onPress={() => {
+                let array = [...list]
+                navigation.navigate('detail', { data: array, index, type: item.type, mode: 'visit' })
+            }}>
+
+                <View style={commonstyles.TOP}>
                     <View>
                         <Image
                             source={{ uri: item.urlToImage == null ? URL : item.urlToImage }}
                             style={{ height: HEIGHT(120), width: WIDTH(120), borderRadius: 10 }}
                         />
                     </View>
-                    <View style={{ justifyContent: 'space-between', width: Dimensions.get('screen').width - WIDTH(120), marginLeft: 5 }}>
+                    <View style={commonstyles.MED}>
                         <View>
                             <Text numberOfLines={3} style={{ fontSize: 15, color: FONT_COLOR }}>{item.title}</Text>
                         </View>
@@ -58,10 +70,18 @@ export default function VisitedScreen() {
                             }}>
                                 <Text style={{ color: '#fff' }}>{item.type.toUpperCase()}</Text>
                             </View>
-                            <View style={{
-                                width: WIDTH(130), height: HEIGHT(25), justifyContent: 'center', alignItems: 'center'
-                            }}>
+                            <View style={commonstyles.DT}>
                                 <Text style={{ marginLeft: 7, color: FONT_COLOR }}>{DATE(item.publishedAt.substring(0, 10))}</Text>
+                            </View>
+                            <View style={{ height: HEIGHT(25), justifyContent: 'center', alignItems: 'center', position: 'absolute', right: WIDTH(10) }}>
+                                <MaterialCommunityIcons
+                                    name='delete-circle-outline'
+                                    size={25}
+                                    onPress={() => {
+                                        newsStore.deleteFromVisited(index)
+                                        setList(newsStore.visited.toJSON())
+                                    }}
+                                />
                             </View>
                         </View>
                     </View>
@@ -84,7 +104,7 @@ export default function VisitedScreen() {
             />
             <View style={{ height: HEIGHT(680) }}>
                 <FlatList
-                    data={newsStore.visited.toJSON()}
+                    data={list}
                     renderItem={({ item, index }) => (
                         <Insider item={item} index={index} />
                     )}

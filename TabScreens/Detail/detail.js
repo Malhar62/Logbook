@@ -20,6 +20,7 @@ export default function DetailScreen({ navigation, route }) {
     let array = route.params.data;
     let index = route.params.index;
     let TYPE = route.params.type;
+    let MODE = route.params.mode;
     const [count, setCount] = useState(index)
     const [item, setItem] = useState(array[index])
     const [col, setCol] = useState('maroon')
@@ -31,7 +32,9 @@ export default function DetailScreen({ navigation, route }) {
         giveDetail(item, 'C')
     }, [count])
     useEffect(() => {
-        addToStore()
+        if (MODE == 'home') {
+            addToStore()
+        }
     }, [])
     const BACK_COLOR = store.theme ? '#101010' : '#fff'
     const FONT_COLOR = store.theme ? '#fff' : '#3d3d3d'
@@ -157,7 +160,7 @@ export default function DetailScreen({ navigation, route }) {
                 barStyle={store.theme ? 'light-content' : 'dark-content'}
             />
             <Top data={item.source.name == null ? 'No sources' : item.source.name} />
-            <BUTTON />
+            {MODE == 'home' ? <BUTTON /> : <View />}
             <GestureRecognizer
                 onSwipeLeft={(state) => onSwipeLeft()}
                 onSwipeRight={(state) => onSwipeRight()}
@@ -174,50 +177,56 @@ export default function DetailScreen({ navigation, route }) {
                             <Text style={{ fontSize: 18, color: FONT_COLOR }}>{item.author}</Text>
                             <Text style={{ fontSize: 18, color: FONT_COLOR }}>{DATE(item.publishedAt.substring(0, 10))}  {item.publishedAt.substring(11, 16)}</Text>
                         </View>
-                        <View style={{}}>
+                        <View>
                             <Text style={{ fontSize: 18, color: FONT_COLOR }}>{item.description}</Text>
                         </View>
                     </View>
                 </View>
-                <View style={{ position: 'absolute', right: 30, bottom: 30 }}>
-                    <AntDesign
-                        name={name}
-                        color={col}
-                        size={30}
-                        onPress={() => {
-                            var count = 0;
-                            newsStore.likes.forEach(element => {
-                                if (element.title == item.title && element.author == item.author) {
-                                    count++;
+                {MODE == 'home'
+                    ? <View style={{ position: 'absolute', right: 30, bottom: 30 }}>
+                        <AntDesign
+                            name={name}
+                            color={col}
+                            size={30}
+                            onPress={() => {
+                                var count = 0;
+                                newsStore.likes.forEach(element => {
+                                    if (element.title == item.title && element.author == item.author) {
+                                        count++;
+                                    }
+                                })
+                                if (count == 0) {
+                                    newsStore.addToLike({ item, type: TYPE })
+                                    console.log('top')
+                                    setProcess('Added to Bookmark !')
+                                    fading()
+                                } else {
+                                    newsStore.deleteFromLike(item)
+                                    console.log('bottom')
+                                    fading()
+                                    setProcess('Removed from Bookmark !')
                                 }
-                            })
-                            if (count == 0) {
-                                newsStore.addToLike({ item, type: TYPE })
-                                console.log('top')
-                                setProcess('Added to Bookmark !')
-                                fading()
-                            } else {
-                                newsStore.deleteFromLike(item)
-                                console.log('bottom')
-                                fading()
-                                setProcess('Removed from Bookmark !')
-                            }
-                            giveDetail(item, 'N')
-                            giveDetail(item, 'C')
-                        }}
-                    />
-                </View>
+                                giveDetail(item, 'N')
+                                giveDetail(item, 'C')
+                            }}
+                        />
+                    </View> : <View></View>
+
+                }
             </GestureRecognizer>
-            <Animated.View style={{
-                position: 'absolute', bottom: 0, right: 0, left: 0,
-                height: length, backgroundColor: 'rgba(52, 52, 52, 0.6)',
-                justifyContent: 'center',
-            }}>
+            <Animated.View style={[styles.ANIM, { height: length, }]}>
                 <Text style={{ color: '#fff', fontSize: 25, fontFamily: ALVINA, marginLeft: 7 }}>{process}</Text>
             </Animated.View>
         </View>
     )
 }
+const styles = StyleSheet.create({
+    ANIM: {
+        position: 'absolute', bottom: 0, right: 0, left: 0,
+        backgroundColor: 'rgba(52, 52, 52, 0.6)',
+        justifyContent: 'center',
+    }
+})
 /**
  * {"source":{"id":null,"name":"NDTV News"},
  * "author":"Ajay Pal Singh","title":"\"With Covid, Things Are Very Uncertain\": Virat Kohli On Cancelled 5th Test | Cricket News - NDTVSports.com",

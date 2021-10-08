@@ -15,7 +15,7 @@ import { MenuData } from './MenuData';
 import { styles } from './styles';
 import axios from 'axios';
 export default function DashBoard({ navigation }) {
-   
+
     console.log('wid' + Dimensions.get('window').width)
 
     React.useEffect(() => {

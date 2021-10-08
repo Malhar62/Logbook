@@ -13,7 +13,7 @@ import { newsStore } from '../../MST/newsStore';
 import Followed from './data';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { HEIGHT } from '../../Screens/Functions';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 export default function ProfileScreen() {
     const navigation = useNavigation()
     const [isEnabled, setIsEnabled] = useState(false);
@@ -61,6 +61,14 @@ export default function ProfileScreen() {
                         <Text style={{ fontSize: 20, color: FONT_COLOR }}>Read Later(sort by time)</Text>
                     </TouchableOpacity>
                     <FontAwesome5 name={'bookmark'} size={20} color={FONT_COLOR} />
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <TouchableOpacity onPress={() => {
+                        newsStore.signOut()
+                    }}>
+                        <Text style={{ fontSize: 20, color: FONT_COLOR }}>LogOut</Text>
+                    </TouchableOpacity>
+                    <MaterialIcons name={'logout'} size={20} color={FONT_COLOR} />
                 </View>
             </View>
         </View>

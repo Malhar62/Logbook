@@ -27,6 +27,9 @@ import LikedScreen from './TabScreens/Liked/liked'
 import VisitedScreen from './TabScreens/Visited/visited';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { HEIGHT } from './Screens/Functions';
+import NewsLogin from './TabScreens/Login/newslogin';
+import BeforeLogin from './TabScreens/Login/beforlogin';
+import { newsStore } from './MST/newsStore';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -142,7 +145,10 @@ function TabNavigation({ }) {
 }
 function Final() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName={'profile'}
+    >
       <Stack.Screen name='profile' component={ProfileScreen} />
       <Stack.Screen name='visit' component={VisitedScreen} />
       <Stack.Screen name='liked' component={LikedScreen} />
@@ -160,17 +166,34 @@ function Last({ route }) {
     </Stack.Navigator>
   )
 }
-function MainNavigation() {
+function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
     >
+      <Stack.Screen name='beforelogin' component={BeforeLogin} />
+      <Stack.Screen name='newslogin' component={NewsLogin} />
+    </Stack.Navigator>
+  )
+}
+function MainNavigation() {
+  SplashScreen.hide();
+  const [flag, setFlag] = useState(null)
+  useEffect(() => {
+    setFlag(newsStore.isLogin)
+    console.log('here changed')
+  }, [newsStore.isLogin])
+
+  return (
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name='auth' component={AuthStack} />
       <Stack.Screen name='main' component={TabNavigation} />
     </Stack.Navigator>
   )
 }
 export default function App() {
-
   return (
     <NavigationContainer >
       <MainNavigation Store={store} />

@@ -18,7 +18,8 @@ const Common = types.model({
 
 const RootStore1 = types.model({
     likes: types.optional(types.array(Common), []),
-    visited: types.optional(types.array(Common), [])
+    visited: types.optional(types.array(Common), []),
+    isLogin: types.optional(types.boolean, false),
 })
     .actions((self) => ({
         addToLike(data) {
@@ -44,12 +45,8 @@ const RootStore1 = types.model({
                 console.log('added')
             }
         },
-        deleteFromLike(data) {
-            self.likes.forEach((item, index) => {
-                if (item.title == data.title && item.author == data.author) {
-                    self.likes.splice(index, 1)
-                }
-            })
+        deleteFromLike(index) {
+            self.likes.splice(index, 1)
         },
         addToVisited(data) {
             let obj = {
@@ -72,10 +69,15 @@ const RootStore1 = types.model({
             self.visited.push(obj)
             console.log('added to visited : ' + self.visited.length)
         },
-        deleteFromVisited(data) {
-            var id = self.visited.findIndex(x => x.title == data.title)
+        deleteFromVisited(id) {
             self.visited.splice(id, 1)
         },
+        signUp() {
+            self.isLogin = true;
+        },
+        signOut() {
+            self.isLogin = false;
+        }
     }))
 
 
